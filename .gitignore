@@ -1,0 +1,22 @@
+# Prodotti della compilazione: li rigenera build.ps1, non hanno motivo di stare qui.
+# L'eseguibile viaggia come allegato di una release, non dentro la repo.
+dist/
+app.ico
+bin/
+obj/
+
+# Dati dell'utente. Vivono accanto all'eseguibile e sono suoi: la lista dei
+# programmi, gli installer scaricati, i resoconti delle sessioni.
+LHInstaller.json
+LHInstaller.json.tmp
+*.illeggibile-*
+Download/
+Log/
+
+# Windows ed editor
+Thumbs.db
+desktop.ini
+*.user
+*.suo
+.vs/
+.idea/

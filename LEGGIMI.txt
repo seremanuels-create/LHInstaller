@@ -1,0 +1,179 @@
+LHInstaller 1.1
+Rimettere in piedi i programmi di un PC appena formattato, in due passi.
+
+--------------------------------------------------------------------------
+COSA FARE PRIMA DI FORMATTARE
+--------------------------------------------------------------------------
+
+1. Apri LHInstaller.exe (doppio clic, non serve installare niente).
+
+2. Riempi la lista. Tre modi, tutti nella barra in alto:
+   - "Leggi da questo PC"   due schede. La prima: i programmi che hai
+                             adesso e che winget sa reinstallare da solo
+                             (spunti, e basta). La seconda: quelli che
+                             winget NON sa reinstallare, presi da un sito
+                             o con licenza. Per ognuno puoi cercare una
+                             corrispondenza a catalogo, aggiungere
+                             l'indirizzo dell'installer, aprire una ricerca
+                             nel browser, o metterlo in lista come
+                             promemoria.
+   - "Cerca nel catalogo"   scrivi un nome: la riga "Consigliata" e'
+                             sempre la versione stabile piu' recente.
+   - "Aggiungi indirizzo"   per i programmi che nel catalogo non ci sono:
+                             incolli il link del file di installazione.
+
+   I promemoria finiscono nel gruppo "Da completare" con stato
+   "manca l'indirizzo": un doppio clic e glielo aggiungi. Finche' non
+   ce l'hanno, l'installazione li salta e te lo dice.
+
+3. Organizza, se vuoi. Il pannello "Gruppi" a sinistra fa ordine: la
+   casella di un gruppo accende o spegne tutto cio' che contiene, il nome
+   filtra la lista. Si installa solo quello che ha la spunta.
+
+4. Copia l'intera cartella su una chiavetta.
+   Bastano due file: LHInstaller.exe e LHInstaller.json (la lista, che
+   si salva da sola accanto all'eseguibile). Nessun installer viene
+   archiviato: si scarica tutto al momento.
+
+--------------------------------------------------------------------------
+COSA FARE DOPO AVER FORMATTATO
+--------------------------------------------------------------------------
+
+1. Copia la cartella dalla chiavetta al PC (per esempio sul Desktop).
+
+2. Doppio clic su LHInstaller.exe e premi "Avvia installazioni".
+
+Chiede una volta sola i permessi di amministratore, poi scarica e
+installa tutto in fila. Nella console in basso scorre l'output vero di
+winget, riga per riga; nella colonna "Stato" vedi a che punto e' ogni
+programma (in corso, installato, errore).
+
+Se qualcosa non riesce, il riepilogo elenca i falliti. Premi di nuovo
+Avvia: quelli gia' installati vengono saltati. Se un installer fallisce
+in silenzio, accendi "Mostra le finestre degli installer" e riprova.
+
+--------------------------------------------------------------------------
+PERCHE' CHIEDE L'AMMINISTRATORE SOLO QUANDO PREMI AVVIA
+--------------------------------------------------------------------------
+
+Per preparare la lista non servono permessi speciali, e sarebbe noioso
+vedersi chiedere il consenso a ogni apertura. Installare software invece
+li richiede: quando premi Avvia, LHInstaller si riavvia come
+amministratore (Windows lo chiede una volta) e riprende da solo.
+Lo scudo sul pulsante e' la convenzione di Windows per dirlo; la barra
+in basso mostra sempre lo stato attuale.
+
+--------------------------------------------------------------------------
+COSA SERVE SUL PC FORMATTATO
+--------------------------------------------------------------------------
+
+Niente. Windows 10 e 11 hanno gia' tutto:
+
+  .NET Framework 4.8   fa girare LHInstaller
+  winget               scarica e installa i programmi
+                       (arriva con "Programma di installazione app")
+
+Se winget manca, LHInstaller te lo dice all'avvio, nella barra in basso
+e nella console, e non finge di funzionare. Si installa dal Microsoft
+Store cercando "Programma di installazione app".
+
+--------------------------------------------------------------------------
+LIMITI, DETTI CHIARAMENTE
+--------------------------------------------------------------------------
+
+Il catalogo winget copre i programmi scaricabili dal web: browser,
+Discord, Spotify, VLC, 7-Zip, Steam, Blender, Git, Python, Node,
+Visual Studio Code, OBS e cosi' via.
+
+NON copre i programmi con licenza personale o account: i plugin audio,
+Ableton, FL Studio, DaVinci Resolve, Native Access. La scheda "Non
+reinstallabili" di "Leggi da questo PC" te li elenca tutti, cosi' per
+ognuno decidi: indirizzo dell'installer, promemoria, oppure portale del
+produttore come hai sempre fatto.
+
+"Cerca corrispondenze nel catalogo", in quella scheda, prova ad abbinare
+ogni programma al catalogo per nome: in verde le corrispondenze sicure
+(Brave, Discord, Chrome...), in arancione con "forse" gli omonimi da
+controllare. E' una chiamata a winget per programma, quindi lenta: per
+questo e' un pulsante, e si puo' fermare.
+
+Sugli indirizzi diretti l'installazione muta non e' garantita: ogni
+famiglia di installer usa un argomento diverso. LHInstaller riconosce
+da sola Inno Setup, NSIS, MSI, WiX e InstallShield leggendo la firma
+dentro il file scaricato. Se non riconosce la famiglia, apre la finestra
+dell'installer e te lo scrive nella console, invece di far finta di
+essere riuscita.
+
+La colonna "Stato" dice "installato" quando winget riconosce il
+programma sul PC. Un programma installato dal sito, senza passare da
+winget, puo' non essere riconosciuto: in quel caso resta "da installare"
+e, se lo lanci, il suo installer lo aggiorna.
+
+--------------------------------------------------------------------------
+LE ALTRE COSE CHE SA FARE
+--------------------------------------------------------------------------
+
+Controlla          Aggiorna la colonna Versione con cio' che il catalogo
+aggiornamenti      offre oggi, e segnala quando sul PC c'e' una versione
+(F5)               piu' vecchia. Per gli indirizzi diretti si accorge se
+                   il file all'altro capo e' cambiato (ETag, data, peso).
+
+Filtro (Ctrl+F)    Mostra solo le voci il cui nome, identificativo,
+                   sito o gruppo contiene il testo. Esc per svuotare.
+
+Tasto destro       Su una voce: modifica, sposta in un gruppo, "installa
+                   solo questo", copia identificativo. Su un gruppo:
+                   spunta o togli tutto, rinomina, elimina.
+
+Profilo            Carica, salva con nome, backup completo e ripristino
+                   (sostituisci o unisci). "Importa da file winget" ed
+                   "Esporta in formato winget" scambiano la lista con
+                   chi usa "winget export / import" da terminale.
+
+Console            Pulisci, salva log, scorrimento automatico. Ogni
+                   sessione di installazione lascia comunque un file
+                   nella cartella Log.
+
+Scorciatoie        Ctrl+K cerca, Ctrl+F filtra, Ctrl+S salva, F5
+                   controlla, Canc rimuove, Invio modifica, F1 aiuto.
+
+Lingua             Menu "Lingua" nella barra in alto: Italiano, English,
+                   oppure Automatica, che segue la lingua di Windows.
+                   La scelta si salva nel profilo e LHInstaller si riapre
+                   da solo nella lingua nuova. Anche numeri e date seguono
+                   la lingua scelta.
+
+Aggiornamenti      All'avvio LHInstaller controlla se esiste una versione
+                   piu' recente di se stesso e, se c'e', lo dice con una
+                   striscia in cima alla finestra: puoi vedere le novita',
+                   scaricare, o ignorare quella versione. Il controllo si
+                   spegne dal menu Aiuto ("Controlla all'avvio") e si puo'
+                   fare a mano da li'. Senza connessione, o finche' non
+                   esiste nessuna versione pubblicata, non dice niente.
+
+Riga di comando    LHInstaller.exe --apri cerca | pc | indirizzo | aiuto
+                   apre subito quel dialogo. --avvia parte con
+                   l'installazione (lo usa il riavvio come amministratore).
+
+--------------------------------------------------------------------------
+DOVE FINISCONO I FILE
+--------------------------------------------------------------------------
+
+LHInstaller.json   la tua lista, accanto all'eseguibile
+Download\          gli installer scaricati dagli indirizzi diretti
+Log\               il resoconto di ogni sessione
+
+Se la chiavetta e' protetta da scrittura, LHInstaller passa da solo a
+%APPDATA%\LHInstaller e te lo scrive all'avvio.
+
+--------------------------------------------------------------------------
+RICOMPILARLO
+--------------------------------------------------------------------------
+
+    .\build.ps1
+
+Usa il compilatore C# che sta gia' dentro Windows, in
+C:\Windows\Microsoft.NET. Non servono Visual Studio ne' l'SDK .NET:
+lo stesso PC appena formattato che LHInstaller serve a ripopolare e'
+anche in grado di ricompilarlo da zero. L'icona dell'eseguibile la
+genera lo script stesso.

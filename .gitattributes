@@ -1,0 +1,14 @@
+# Progetto solo per Windows: nella copia di lavoro le righe stanno in CRLF.
+* text=auto eol=crlf
+
+# I sorgenti devono restare in puro ASCII (li legge il compilatore in dotazione
+# con la codepage di sistema): niente normalizzazioni creative.
+*.cs   text eol=crlf
+*.ps1  text eol=crlf
+*.txt  text eol=crlf
+*.md   text eol=crlf
+*.manifest text eol=crlf
+
+*.png binary
+*.ico binary
+*.exe binary
